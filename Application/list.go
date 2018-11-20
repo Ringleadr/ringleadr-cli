@@ -1,9 +1,13 @@
 package Application
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/GodlikePenguin/agogos-cli/Config"
+	"github.com/GodlikePenguin/agogos-cli/Errors"
+	"github.com/GodlikePenguin/agogos-cli/Format"
 	"github.com/GodlikePenguin/agogos-cli/Requests"
+	"github.com/GodlikePenguin/agogos-datatypes"
 	"github.com/urfave/cli"
 )
 
@@ -12,6 +16,11 @@ func ListApplications(c *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	println(string(resp))
-	return nil
+	var apps []Datatypes.Application
+
+	//Bind response to struct
+	if err := json.Unmarshal(resp, &apps); err != nil {
+		return Errors.UnexpectedReponse()
+	}
+	return Format.PrintApplications(&apps)
 }

@@ -22,11 +22,10 @@ func CreateApplication(c *cli.Context) error {
 		return err
 	}
 
-	resp, err := Requests.PostRequest(fmt.Sprintf("%s/applications", Config.GetAgogosHostUrl()),
+	_, err = Requests.PostRequest(fmt.Sprintf("%s/applications", Config.GetAgogosHostUrl()),
 		bytes.NewReader(file))
 	if err != nil {
 		return err
 	}
-	println(string(resp))
 	return nil
 }
