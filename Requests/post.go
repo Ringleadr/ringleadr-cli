@@ -13,6 +13,8 @@ func PostRequest(address string, body io.Reader) ([]byte, error) {
 		return nil, err
 	}
 
+	defer resp.Body.Close()
+
 	respBody, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
