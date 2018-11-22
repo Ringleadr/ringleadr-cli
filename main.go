@@ -49,15 +49,15 @@ func main() {
 			},
 		},
 		{
-			Name: "delete",
+			Name:    "delete",
 			Aliases: []string{"d"},
-			Usage: "Delete a resource",
+			Usage:   "Delete a resource",
 			Subcommands: []cli.Command{
 				{
-					Name: "application",
+					Name:    "application",
 					Aliases: []string{"app"},
-					Usage: "Delete an application with given name",
-					Action: Application.DeleteApplication,
+					Usage:   "Delete an application with given name",
+					Action:  Application.DeleteApplication,
 				},
 			},
 		},
