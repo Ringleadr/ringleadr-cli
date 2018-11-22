@@ -19,7 +19,7 @@ func PostRequest(address string, body io.Reader) ([]byte, error) {
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New("500: "+string(respBody))
+		return nil, errors.New("500: " + string(respBody))
 	}
 
 	return respBody, nil

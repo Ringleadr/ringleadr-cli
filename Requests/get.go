@@ -18,7 +18,7 @@ func GetRequest(address string) ([]byte, error) {
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New("500: "+string(body))
+		return nil, errors.New("500: " + string(body))
 	}
 
 	return body, nil
