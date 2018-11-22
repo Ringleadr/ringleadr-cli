@@ -48,6 +48,19 @@ func main() {
 				},
 			},
 		},
+		{
+			Name: "delete",
+			Aliases: []string{"d"},
+			Usage: "Delete a resource",
+			Subcommands: []cli.Command{
+				{
+					Name: "application",
+					Aliases: []string{"app"},
+					Usage: "Delete an application with given name",
+					Action: Application.DeleteApplication,
+				},
+			},
+		},
 	}
 
 	err := app.Run(os.Args)

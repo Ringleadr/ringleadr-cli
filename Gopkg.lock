@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  branch = "master"
+  digest = "1:7168126e41d7c8517d5f4ad2e2d19a050e936eed2f019f1132be022500613ff3"
+  name = "github.com/GodlikePenguin/agogos-datatypes"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "5bf2eb9f173a25296d1685a199544a859889736d"
+
+[[projects]]
   digest = "1:b24d38b282bacf9791408a080f606370efa3d364e4b5fd9ba0f7b87786d3b679"
   name = "github.com/urfave/cli"
   packages = ["."]
@@ -12,6 +20,9 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/urfave/cli"]
+  input-imports = [
+    "github.com/GodlikePenguin/agogos-datatypes",
+    "github.com/urfave/cli",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
