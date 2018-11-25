@@ -4,6 +4,7 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 func GetRequest(address string) ([]byte, error) {
@@ -20,7 +21,7 @@ func GetRequest(address string) ([]byte, error) {
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New("500: " + string(body))
+		return nil, errors.New(strconv.Itoa(resp.StatusCode) + " " + string(body))
 	}
 
 	return body, nil

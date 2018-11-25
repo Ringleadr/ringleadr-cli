@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/GodlikePenguin/agogos-cli/Application"
 	"github.com/GodlikePenguin/agogos-cli/Config"
+	"github.com/GodlikePenguin/agogos-cli/Init"
 	"github.com/urfave/cli"
 	"log"
 	"os"
@@ -60,6 +61,12 @@ func main() {
 					Action:  Application.DeleteApplication,
 				},
 			},
+		},
+		{
+			Name:    "init",
+			Aliases: []string{"i"},
+			Usage:   "Set up an Agogos Host",
+			Action:  Init.Init,
 		},
 	}
 
