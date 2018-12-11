@@ -2,7 +2,8 @@
   "name": "test-app-2",
   "components": [
     {
-      "image": "nginx"
+      "image": "nginx",
+      "replicas": 2
     }
   ]
 }
