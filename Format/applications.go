@@ -8,8 +8,8 @@ import (
 )
 
 const applicationList = `NAME	#COMPONENTS
-{{range .}}{{.Name}}	{{len .Components}}
-{{end}}`
+{{if .}}{{range $item := .}}{{$item.Name}}	{{len $item.Components}}
+{{end}}{{end}}`
 
 func PrintApplications(apps *[]Datatypes.Application) error {
 	templ, err := template.New("apps").Parse(applicationList)
