@@ -4,6 +4,7 @@ import (
 	"github.com/GodlikePenguin/agogos-cli/Application"
 	"github.com/GodlikePenguin/agogos-cli/Config"
 	"github.com/GodlikePenguin/agogos-cli/Init"
+	"github.com/GodlikePenguin/agogos-cli/Storage"
 	"github.com/urfave/cli"
 	"log"
 	"os"
@@ -34,6 +35,12 @@ func main() {
 					},
 					Action: Application.CreateApplication,
 				},
+				{
+					Name:    "storage",
+					Aliases: []string{"s"},
+					Usage:   "Create a storage volume with the given name",
+					Action:  Storage.CreateStorage,
+				},
 			},
 		},
 		{
@@ -47,6 +54,12 @@ func main() {
 					Usage:   "List all Applications",
 					Action:  Application.ListApplications,
 				},
+				{
+					Name:    "storage",
+					Aliases: []string{"s"},
+					Usage:   "List all storage volumes",
+					Action:  Storage.ListStorage,
+				},
 			},
 		},
 		{
@@ -59,6 +72,12 @@ func main() {
 					Aliases: []string{"app"},
 					Usage:   "Delete an application with given name",
 					Action:  Application.DeleteApplication,
+				},
+				{
+					Name:    "storage",
+					Aliases: []string{"s"},
+					Usage:   "Delete the storage volume with the given name",
+					Action:  Storage.DeleteStorage,
 				},
 			},
 		},
