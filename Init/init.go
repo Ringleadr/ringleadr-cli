@@ -39,9 +39,8 @@ func Init(ctx *cli.Context) error {
 		return err
 	}
 
-	downloadURL := getDownloadURL(body)
-
-	if downloadURL == "" {
+	downloadURL, err := getDownloadURL(body)
+	if downloadURL == "" || err != nil {
 		return errors.New("could not get latest download URL for agogos-host")
 	}
 
@@ -75,20 +74,23 @@ func Init(ctx *cli.Context) error {
 	}
 
 	log.Println("Downloaded latest agogos-release binary. It has been added to your path and is called `agogos-host`.",
-		"The service is now running.")
+		"The service is now running. This may take a few minutes to start up")
 	return nil
 }
 
-func getDownloadURL(body []byte) string {
+func getDownloadURL(body []byte) (string, error) {
 	var downloadURL string
 	//Iterate through JSON response and get download for this OS
-	jsonparser.ArrayEach(body, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+	_, err := jsonparser.ArrayEach(body, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
 		val, _, _, err := jsonparser.Get(value, "browser_download_url")
 		if err == nil && strings.Contains(string(val), runtime.GOOS) {
 			downloadURL = string(val)
 		}
 	}, "assets")
-	return downloadURL
+	if err != nil {
+		return "", err
+	}
+	return downloadURL, nil
 }
 
 func tryStartCommand(name string) (*exec.Cmd, error) {
