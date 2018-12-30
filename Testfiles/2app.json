@@ -1,5 +1,6 @@
 {
   "name": "test-app-2",
+  "copies" : 2,
   "components": [
     {
       "image": "nginx",
