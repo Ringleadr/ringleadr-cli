@@ -8,10 +8,6 @@ import (
 	"text/tabwriter"
 )
 
-const applicationList = `NAME		#COMPONENTS		#COPIES
-{{if .}}{{range $item := .}}{{$item.Name}}		{{len $item.Components}}		{{$item.Copies}}
-{{end}}{{end}}`
-
 func PrintApplications(apps *[]Datatypes.Application) error {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
 	_, err := fmt.Fprintln(w, "NAME\t#COMPONENTS\t#COPIES")
