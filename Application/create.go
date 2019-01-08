@@ -22,6 +22,10 @@ func CreateApplication(c *cli.Context) error {
 		return err
 	}
 
+	if !Config.IsJson(file) {
+		return errors.New("provided file is not valid JSON")
+	}
+
 	_, err = Requests.PostRequest(fmt.Sprintf("%s/applications", Config.GetAgogosHostUrl()),
 		bytes.NewReader(file))
 	if err != nil {
