@@ -4,6 +4,7 @@ import (
 	"github.com/GodlikePenguin/agogos-cli/Application"
 	"github.com/GodlikePenguin/agogos-cli/Config"
 	"github.com/GodlikePenguin/agogos-cli/Init"
+	"github.com/GodlikePenguin/agogos-cli/Networks"
 	"github.com/GodlikePenguin/agogos-cli/Storage"
 	"github.com/urfave/cli"
 	"log"
@@ -41,6 +42,12 @@ func main() {
 					Usage:   "Create a storage volume with the given name",
 					Action:  Storage.CreateStorage,
 				},
+				{
+					Name:    "network",
+					Aliases: []string{"n"},
+					Usage:   "Create a network with the given name",
+					Action:  Networks.CreateNetwork,
+				},
 			},
 		},
 		{
@@ -60,6 +67,12 @@ func main() {
 					Usage:   "List all storage volumes",
 					Action:  Storage.ListStorage,
 				},
+				{
+					Name:    "networks",
+					Aliases: []string{"n"},
+					Usage:   "List all container networks",
+					Action:  Networks.ListNetworks,
+				},
 			},
 		},
 		{
@@ -78,6 +91,12 @@ func main() {
 					Aliases: []string{"s"},
 					Usage:   "Delete the storage volume with the given name",
 					Action:  Storage.DeleteStorage,
+				},
+				{
+					Name:    "network",
+					Aliases: []string{"n"},
+					Usage:   "Delete the network with the given name",
+					Action:  Networks.DeleteNetwork,
 				},
 			},
 		},
