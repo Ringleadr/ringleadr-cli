@@ -1,0 +1,14 @@
+{
+  "name": "implicit-network",
+  "components": [
+    {
+      "name": "tweeter",
+      "image": "tutum/hello-world",
+      "replicas": 2
+    },
+    {
+      "name": "curler",
+      "image": "forever-curl"
+    }
+  ]
+}
