@@ -1,0 +1,10 @@
+{
+  "name": "copies",
+  "copies" : 2,
+  "components": [
+    {
+      "image": "nginx",
+      "replicas": 2
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "storage",
+  "components": [
+    {
+      "image": "nginx",
+      "storage": [
+        {
+          "name": "new-storage",
+          "mount_path": "/app"
+        }
+      ]
+    }
+  ]
+}
