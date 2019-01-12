@@ -2,6 +2,7 @@ package Requests
 
 import (
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -27,7 +28,7 @@ func DeleteRequest(address string) ([]byte, error) {
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New("500: " + string(body))
+		return nil, errors.New(fmt.Sprintf("%d: %s", resp.StatusCode, string(body)))
 	}
 
 	return body, nil
