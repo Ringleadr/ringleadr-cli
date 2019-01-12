@@ -1,0 +1,12 @@
+{
+  "name": "different-network-tweeter",
+  "components": [
+    {
+      "name": "tweeter",
+      "image": "tutum/hello-world"
+    }
+  ],
+  "networks": [
+    "different-network"
+  ]
+}

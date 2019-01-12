@@ -1,0 +1,13 @@
+{
+  "name": "network-tweeter",
+  "components": [
+    {
+      "name": "tweeter",
+      "image": "tutum/hello-world",
+      "replicas": 2
+    }
+  ],
+  "networks": [
+    "test-network"
+  ]
+}

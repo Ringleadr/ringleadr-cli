@@ -1,0 +1,12 @@
+{
+  "name": "network-curler",
+  "components": [
+    {
+      "name": "curler",
+      "image": "forever-curl"
+    }
+  ],
+  "networks": [
+    "test-network"
+  ]
+}
