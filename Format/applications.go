@@ -10,12 +10,12 @@ import (
 
 func PrintApplications(apps *[]Datatypes.Application) error {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	_, err := fmt.Fprintln(w, "NAME\t#COMPONENTS\t#COPIES")
+	_, err := fmt.Fprintln(w, "NAME\t#COMPONENTS\t#COPIES\tMESSAGES")
 	if err != nil {
 		return Errors.FormatError()
 	}
 	for _, app := range *apps {
-		_, err := fmt.Fprintln(w, fmt.Sprintf("%s\t%d\t%d", app.Name, len(app.Components), app.Copies))
+		_, err := fmt.Fprintln(w, fmt.Sprintf("%s\t%d\t%d\t%s", app.Name, len(app.Components), app.Copies, app.Messages))
 		if err != nil {
 			return err
 		}
