@@ -29,7 +29,10 @@ func ListApplication(c *cli.Context, args []string) error {
 		return err
 	}
 
-	var apps = []Datatypes.Application{*app}
+	var apps []Datatypes.Application
+	if app != nil {
+		apps = append(apps, *app)
+	}
 	return Format.PrintApplications(&apps)
 }
 
@@ -54,7 +57,7 @@ func getApplication(name string) (*Datatypes.Application, error) {
 	}
 
 	if string(bytes) == "null" {
-		return nil, Format.PrintApplications(nil)
+		return nil, nil
 	}
 
 	var app Datatypes.Application
