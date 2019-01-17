@@ -57,7 +57,7 @@ func main() {
 			Subcommands: []cli.Command{
 				{
 					Name:    "applications",
-					Aliases: []string{"app", "application"},
+					Aliases: []string{"app", "apps", "application"},
 					Usage:   "List all Applications",
 					Action:  Application.ListApplications,
 				},
@@ -72,6 +72,18 @@ func main() {
 					Aliases: []string{"n"},
 					Usage:   "List all container networks",
 					Action:  Networks.ListNetworks,
+				},
+			},
+		},
+		{
+			Name:  "dump",
+			Usage: "Dump raw resource data",
+			Subcommands: []cli.Command{
+				{
+					Name:    "applications",
+					Aliases: []string{"app", "applications"},
+					Usage:   "Dump all information about one or all application(s)",
+					Action:  Application.DumpApplications,
 				},
 			},
 		},
