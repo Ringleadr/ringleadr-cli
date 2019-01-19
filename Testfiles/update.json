@@ -1,0 +1,9 @@
+{
+  "name": "test-app",
+  "components": [
+    {
+      "name": "named-component",
+      "image": "nginx"
+    }
+  ]
+}
