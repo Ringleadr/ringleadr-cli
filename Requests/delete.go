@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 func DeleteRequest(address string) ([]byte, error) {
@@ -27,8 +28,13 @@ func DeleteRequest(address string) ([]byte, error) {
 		return nil, err
 	}
 
+	stringBody := string(body)
+	if strings.HasSuffix(stringBody, "null") {
+		stringBody = stringBody[:len(stringBody)-4]
+	}
+
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("%d: %s", resp.StatusCode, string(body)))
+		return nil, errors.New(fmt.Sprintf("%d: %s", resp.StatusCode, stringBody))
 	}
 
 	return body, nil

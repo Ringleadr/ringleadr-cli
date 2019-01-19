@@ -76,6 +76,25 @@ func main() {
 			},
 		},
 		{
+			Name:    "update",
+			Aliases: []string{"u"},
+			Usage:   "Update a resource",
+			Subcommands: []cli.Command{
+				{
+					Name:    "application",
+					Aliases: []string{"app"},
+					Usage:   "Update an existing application",
+					Action:  Application.UpdateApplication,
+					Flags: []cli.Flag{
+						cli.StringFlag{
+							Name:  "file, f",
+							Usage: "Load application config from `FILE` (required)",
+						},
+					},
+				},
+			},
+		},
+		{
 			Name:  "dump",
 			Usage: "Dump raw resource data",
 			Subcommands: []cli.Command{
