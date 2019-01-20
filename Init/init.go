@@ -2,6 +2,7 @@ package Init
 
 import (
 	"errors"
+	"fmt"
 	"github.com/GodlikePenguin/agogos-cli/Requests"
 	"github.com/buger/jsonparser"
 	"github.com/urfave/cli"
@@ -13,13 +14,20 @@ import (
 )
 
 func Init(ctx *cli.Context) error {
+	//Tell the host it will run in the background
+	var agogosArgs = "-background "
+	//Grab the connect flag in case it's non empty
+	address := ctx.String("connect")
+	if address != "" {
+		agogosArgs += fmt.Sprintf("-connect %s ", address)
+	}
 	//Check if there is already an instance running
 	if _, err := Requests.GetRequest("http://localhost:14440/ping"); err == nil {
 		return errors.New("agogos host already running on this machine")
 	}
 
 	//if not, try to run one
-	cmd, err := tryStartCommand("agogos-host")
+	cmd, err := tryStartCommand("agogos-host " + agogosArgs)
 	if err == nil {
 		//Release the process from our current instance so it doesn't quit when we do
 		err = cmd.Process.Release()
@@ -62,7 +70,7 @@ func Init(ctx *cli.Context) error {
 	}
 
 	//Try to start the binary
-	cmd, err = tryStartCommand("agogos-host")
+	cmd, err = tryStartCommand("agogos-host " + agogosArgs)
 	if err != nil {
 		return err
 	}

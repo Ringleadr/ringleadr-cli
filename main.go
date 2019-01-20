@@ -142,6 +142,12 @@ func main() {
 			Aliases: []string{"i"},
 			Usage:   "Set up an Agogos Host",
 			Action:  Init.Init,
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  "connect, c",
+					Usage: "The address of a primary host to connect to (if initialising a secondary node)",
+				},
+			},
 		},
 	}
 
