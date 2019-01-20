@@ -5,6 +5,7 @@ import (
 	"github.com/GodlikePenguin/agogos-cli/Config"
 	"github.com/GodlikePenguin/agogos-cli/Init"
 	"github.com/GodlikePenguin/agogos-cli/Networks"
+	"github.com/GodlikePenguin/agogos-cli/Nodes"
 	"github.com/GodlikePenguin/agogos-cli/Storage"
 	"github.com/urfave/cli"
 	"log"
@@ -72,6 +73,11 @@ func main() {
 					Aliases: []string{"n"},
 					Usage:   "List all container networks",
 					Action:  Networks.ListNetworks,
+				},
+				{
+					Name:   "nodes",
+					Usage:  "List all nodes in the Agogos cluster",
+					Action: Nodes.ListNodes,
 				},
 			},
 		},

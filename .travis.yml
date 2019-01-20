@@ -9,5 +9,16 @@ before_install:
 install:
 - dep ensure
 script:
-- go test -v ./...
-- go build
+  - go test -v ./...
+  - mkdir build
+  - env GOOS=linux GOARCH=amd64 go build -o build/agogos-cli-linux
+  - env GOOS=darwin GOARCH=amd64 go build -o build/agogos-cli-darwin
+
+deploy:
+  provider: releases
+  file:
+    - build/agogos-cli-linux
+    - build/agogos-cli-darwin
+  skip_cleanup: true
+  on:
+    branch: master

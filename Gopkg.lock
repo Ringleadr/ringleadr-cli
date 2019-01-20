@@ -3,11 +3,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:fb6868d1dbe3208e6fa43e787ad47d9bec93356e7caa026df17d590d2f0811a8"
+  digest = "1:58d501d43eb0f61f72ad308f0204e3aa1c2e3b8d67db30a882e6ba0e60e21734"
   name = "github.com/GodlikePenguin/agogos-datatypes"
   packages = ["."]
   pruneopts = "UT"
-  revision = "6d187eb1c1d4a800a9e07a1b003fb095019810ca"
+  revision = "d037f849db07e1a9e574ae1c4c05764f07ed241a"
 
 [[projects]]
   branch = "master"
