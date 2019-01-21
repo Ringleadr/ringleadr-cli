@@ -1,0 +1,10 @@
+{
+  "name": "bad-node",
+  "components": [
+    {
+      "name": "named-component",
+      "image": "nginx"
+    }
+  ],
+  "node": "does.not.exist"
+}

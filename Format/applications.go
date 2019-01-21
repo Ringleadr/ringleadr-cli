@@ -11,7 +11,7 @@ import (
 
 func PrintApplications(apps *[]Datatypes.Application) error {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	_, err := fmt.Fprintln(w, "NAME\tCOMPONENTS READY\t#COPIES\tMESSAGES")
+	_, err := fmt.Fprintln(w, "NAME\tCOMPONENTS READY\tNODE\tMESSAGES")
 	if err != nil {
 		return Errors.FormatError()
 	}
@@ -22,7 +22,7 @@ func PrintApplications(apps *[]Datatypes.Application) error {
 				readyComps += 1
 			}
 		}
-		_, err := fmt.Fprintln(w, fmt.Sprintf("%s\t(%d/%d)\t%d\t%s", app.Name, readyComps, len(app.Components), app.Copies, app.Messages))
+		_, err := fmt.Fprintln(w, fmt.Sprintf("%s\t(%d/%d)\t%s\t%s", app.Name, readyComps, len(app.Components), app.Node, app.Messages))
 		if err != nil {
 			return err
 		}

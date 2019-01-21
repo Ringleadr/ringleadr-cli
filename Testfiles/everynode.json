@@ -1,0 +1,10 @@
+{
+  "name": "every-node",
+  "components": [
+    {
+      "name": "named-component",
+      "image": "nginx"
+    }
+  ],
+  "node": "*"
+}
