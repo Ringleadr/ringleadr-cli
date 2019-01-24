@@ -1,0 +1,10 @@
+{
+  "name": "scale",
+  "components": [
+    {
+      "name": "scaler",
+      "image": "busy-curl",
+      "scale_threshold": 1
+    }
+  ]
+}
