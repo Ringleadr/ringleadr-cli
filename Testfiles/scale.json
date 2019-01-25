@@ -4,7 +4,8 @@
     {
       "name": "scaler",
       "image": "busy-curl",
-      "scale_threshold": 1
+      "scale_threshold": 50,
+      "scale_max": 3
     }
   ]
 }
