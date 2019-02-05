@@ -3,7 +3,7 @@
   "components": [
     {
       "name": "tweeter",
-      "image": "tutum/hello-world",
+      "image": "mendhak/http-https-echo",
       "replicas": 2
     }
   ],

@@ -3,7 +3,7 @@
   "components": [
     {
       "name": "curler",
-      "image": "forever-curl"
+      "image": "edwarddobson/forever-curl"
     }
   ],
   "networks": [
