@@ -2,7 +2,6 @@ package Init
 
 import (
 	"errors"
-	"fmt"
 	"github.com/GodlikePenguin/agogos-cli/Requests"
 	"github.com/buger/jsonparser"
 	"github.com/urfave/cli"
@@ -15,11 +14,11 @@ import (
 
 func Init(ctx *cli.Context) error {
 	//Tell the host it will run in the background
-	var agogosArgs = "-background "
+	var agogosArgs = []string{"-background"}
 	//Grab the connect flag in case it's non empty
 	address := ctx.String("connect")
 	if address != "" {
-		agogosArgs += fmt.Sprintf("-connect %s ", address)
+		agogosArgs = append(agogosArgs, "-connect", address)
 	}
 	//Check if there is already an instance running
 	if _, err := Requests.GetRequest("http://localhost:14440/ping"); err == nil {
@@ -27,7 +26,7 @@ func Init(ctx *cli.Context) error {
 	}
 
 	//if not, try to run one
-	cmd, err := tryStartCommand("agogos-host " + agogosArgs)
+	cmd, err := tryStartCommand("agogos-host", agogosArgs)
 	if err == nil {
 		//Release the process from our current instance so it doesn't quit when we do
 		err = cmd.Process.Release()
@@ -36,41 +35,19 @@ func Init(ctx *cli.Context) error {
 		}
 
 		log.Println("You already have agogos-host installed. In the future you can run it using `agogos-host`. It is now running.")
+		log.Println("It may take a few minutes to start up")
 		return nil
 	}
 
 	log.Println("agogos-host not found on this machine. Downloading latest binary.")
 	//finally, download binary
-	//Get URL of latest download
-	body, err := Requests.GetRequest("https://api.github.com/repos/GodlikePenguin/agogos-host-release/releases/latest")
-	if err != nil {
-		return err
-	}
-
-	downloadURL, err := getDownloadURL(body)
-	if downloadURL == "" || err != nil {
-		return errors.New("could not get latest download URL for agogos-host")
-	}
-
-	err = DownloadFile("agogos-host", downloadURL)
-	if err != nil {
-		return err
-	}
-
-	//chmod to make executable
-	err = os.Chmod("agogos-host", 0755)
-	if err != nil {
-		return err
-	}
-
-	//Move downloaded file to new location
-	err = os.Rename("agogos-host", "/usr/local/bin/agogos-host")
+	err = DownloadLatestBinary()
 	if err != nil {
 		return err
 	}
 
 	//Try to start the binary
-	cmd, err = tryStartCommand("agogos-host " + agogosArgs)
+	cmd, err = tryStartCommand("agogos-host ", agogosArgs)
 	if err != nil {
 		return err
 	}
@@ -101,11 +78,42 @@ func getDownloadURL(body []byte) (string, error) {
 	return downloadURL, nil
 }
 
-func tryStartCommand(name string) (*exec.Cmd, error) {
-	cmd := exec.Command(name)
+func tryStartCommand(name string, args []string) (*exec.Cmd, error) {
+	cmd := exec.Command(name, args...)
 	err := cmd.Start()
 	if err != nil {
 		return nil, err
 	}
 	return cmd, nil
+}
+
+func DownloadLatestBinary() error {
+	//Get URL of latest download
+	body, err := Requests.GetRequest("https://api.github.com/repos/GodlikePenguin/agogos-host-release/releases/latest")
+	if err != nil {
+		return err
+	}
+
+	downloadURL, err := getDownloadURL(body)
+	if downloadURL == "" || err != nil {
+		return errors.New("could not get latest download URL for agogos-host")
+	}
+
+	err = DownloadFile("agogos-host", downloadURL)
+	if err != nil {
+		return err
+	}
+
+	//chmod to make executable
+	err = os.Chmod("agogos-host", 0755)
+	if err != nil {
+		return err
+	}
+
+	//Move downloaded file to new location
+	err = os.Rename("agogos-host", "/usr/local/bin/agogos-host")
+	if err != nil {
+		return err
+	}
+	return nil
 }

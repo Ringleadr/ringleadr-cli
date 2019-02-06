@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/GodlikePenguin/agogos-cli/Application"
 	"github.com/GodlikePenguin/agogos-cli/Config"
+	"github.com/GodlikePenguin/agogos-cli/Host"
 	"github.com/GodlikePenguin/agogos-cli/Init"
 	"github.com/GodlikePenguin/agogos-cli/Networks"
 	"github.com/GodlikePenguin/agogos-cli/Nodes"
@@ -57,10 +58,11 @@ func main() {
 			Usage:   "List resources",
 			Subcommands: []cli.Command{
 				{
-					Name:    "applications",
-					Aliases: []string{"app", "apps", "application"},
-					Usage:   "List all Applications",
-					Action:  Application.ListApplications,
+					Name:      "applications",
+					Aliases:   []string{"app", "apps", "application"},
+					Usage:     "List one or all Applications",
+					Action:    Application.ListApplications,
+					ArgsUsage: "The name of a specific application (optional)",
 				},
 				{
 					Name:    "storage",
@@ -70,14 +72,15 @@ func main() {
 				},
 				{
 					Name:    "networks",
-					Aliases: []string{"n"},
+					Aliases: []string{"n", "network"},
 					Usage:   "List all container networks",
 					Action:  Networks.ListNetworks,
 				},
 				{
-					Name:   "nodes",
-					Usage:  "List all nodes in the Agogos cluster",
-					Action: Nodes.ListNodes,
+					Name:    "nodes",
+					Aliases: []string{"node", "no"},
+					Usage:   "List all nodes in the Agogos cluster",
+					Action:  Nodes.ListNodes,
 				},
 			},
 		},
@@ -131,7 +134,7 @@ func main() {
 				},
 				{
 					Name:    "network",
-					Aliases: []string{"n"},
+					Aliases: []string{"n", "networks"},
 					Usage:   "Delete the network with the given name",
 					Action:  Networks.DeleteNetwork,
 				},
@@ -146,6 +149,22 @@ func main() {
 				cli.StringFlag{
 					Name:  "connect, c",
 					Usage: "The address of a primary host to connect to (if initialising a secondary node)",
+				},
+				cli.StringFlag{
+					Name:  "proxy, p",
+					Usage: "Set to start the Agogos Host in proxy mode",
+				},
+			},
+		},
+		{
+			Name:    "host",
+			Aliases: []string{"h", "hosts"},
+			Usage:   "Commands related to the host application",
+			Subcommands: []cli.Command{
+				{
+					Name:   "update",
+					Usage:  "Update the agogos-host binary on this machine",
+					Action: Host.UpdateHost,
 				},
 			},
 		},
