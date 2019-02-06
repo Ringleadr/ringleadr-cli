@@ -13,12 +13,15 @@ import (
 	"os"
 )
 
+var buildTime string
+
 func main() {
 	Config.SetupConfig()
 	app := cli.NewApp()
 
 	app.Name = "agogos-cli"
 	app.Usage = "Command line application to interact with an Agogos host"
+	app.Version = buildTime
 
 	app.Commands = []cli.Command{
 		{

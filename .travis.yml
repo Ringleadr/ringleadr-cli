@@ -11,8 +11,8 @@ install:
 script:
   - go test -v ./...
   - mkdir build
-  - env GOOS=linux GOARCH=amd64 go build -o build/agogos-cli-linux
-  - env GOOS=darwin GOARCH=amd64 go build -o build/agogos-cli-darwin
+  - env GOOS=linux GOARCH=amd64 go build -o build/agogos-cli-linux -ldflags "-X main.buildTime=`date -u +.%Y-%m-%d_%H:%M:%S`"
+  - env GOOS=darwin GOARCH=amd64 go build -o build/agogos-cli-darwin -ldflags "-X main.buildTime=`date -u +.%Y-%m-%d_%H:%M:%S`"
 
 deploy:
   provider: releases
