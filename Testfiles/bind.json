@@ -1,0 +1,14 @@
+{
+  "name": "bind",
+  "components": [
+    {
+      "image": "nginx",
+      "storage": [
+        {
+          "name": "/tmp",
+          "mount_path": "/app"
+        }
+      ]
+    }
+  ]
+}
