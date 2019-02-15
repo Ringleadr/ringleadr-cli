@@ -20,6 +20,11 @@ func Init(ctx *cli.Context) error {
 	if address != "" {
 		agogosArgs = append(agogosArgs, "-connect", address)
 	}
+
+	proxy := ctx.Bool("proxy")
+	if proxy {
+		agogosArgs = append(agogosArgs, "-proxy")
+	}
 	//Check if there is already an instance running
 	if _, err := Requests.GetRequest("http://localhost:14440/ping"); err == nil {
 		return errors.New("agogos host already running on this machine")

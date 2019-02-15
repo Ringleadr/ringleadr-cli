@@ -153,7 +153,7 @@ func main() {
 					Name:  "connect, c",
 					Usage: "The address of a primary host to connect to (if initialising a secondary node)",
 				},
-				cli.StringFlag{
+				cli.BoolFlag{
 					Name:  "proxy, p",
 					Usage: "Set to start the Agogos Host in proxy mode",
 				},
