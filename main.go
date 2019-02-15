@@ -141,6 +141,12 @@ func main() {
 					Usage:   "Delete the network with the given name",
 					Action:  Networks.DeleteNetwork,
 				},
+				{
+					Name:    "node",
+					Aliases: []string{"no"},
+					Usage:   "Delete a node in the cluster (stop scheduling applications on the node)",
+					Action:  Nodes.DeleteNode,
+				},
 			},
 		},
 		{

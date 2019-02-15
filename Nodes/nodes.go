@@ -2,6 +2,7 @@ package Nodes
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/GodlikePenguin/agogos-cli/Config"
 	"github.com/GodlikePenguin/agogos-cli/Errors"
@@ -24,4 +25,18 @@ func ListNodes(c *cli.Context) error {
 		return Errors.UnexpectedReponse()
 	}
 	return Format.PrintNodes(&nodes)
+}
+
+func DeleteNode(c *cli.Context) error {
+	if len(c.Args()) < 1 {
+		cli.ShowSubcommandHelp(c)
+		return errors.New("node name not specified")
+	}
+
+	name := c.Args()[0]
+	_, err := Requests.DeleteRequest(fmt.Sprintf("%s/node/%s", Config.GetAgogosHostUrl(), name))
+	if err != nil {
+		return err
+	}
+	return nil
 }
