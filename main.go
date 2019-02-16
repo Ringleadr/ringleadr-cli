@@ -175,6 +175,13 @@ func main() {
 					Usage:  "Update the agogos-host binary on this machine",
 					Action: Host.UpdateHost,
 				},
+				{
+					Name:      "stats",
+					Aliases:   []string{"s"},
+					Usage:     "Display the stats for a given node",
+					ArgsUsage: "(name: required)",
+					Action:    Nodes.StatsForNode,
+				},
 			},
 		},
 	}

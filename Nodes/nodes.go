@@ -40,3 +40,23 @@ func DeleteNode(c *cli.Context) error {
 	}
 	return nil
 }
+
+func StatsForNode(c *cli.Context) error {
+	if len(c.Args()) < 1 {
+		cli.ShowSubcommandHelp(c)
+		return errors.New("node name not specified")
+	}
+
+	name := c.Args()[0]
+	resp, err := Requests.GetRequest(fmt.Sprintf("%s/node/%s/stats", Config.GetAgogosHostUrl(), name))
+	if err != nil {
+		return err
+	}
+
+	stats := &Datatypes.NodeStatsEntry{}
+	err = json.Unmarshal(resp, stats)
+	if err != nil {
+		return errors.New("Error parsing response from server: " + err.Error())
+	}
+	return Format.PrintNodeStats(stats)
+}
