@@ -9,6 +9,9 @@ import (
 )
 
 func DeleteApplication(c *cli.Context) error {
+	if c.Bool("all") {
+		return DeleteAllApplications(c)
+	}
 	//TODO handle multiple application names
 	appName := c.Args().Get(0)
 	if appName == "" {
@@ -16,8 +19,10 @@ func DeleteApplication(c *cli.Context) error {
 		return errors.New("delete requires an application name to delete")
 	}
 	_, err := Requests.DeleteRequest(fmt.Sprintf("%s/applications/%s", Config.GetAgogosHostUrl(), appName))
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
+}
+
+func DeleteAllApplications(c *cli.Context) error {
+	_, err := Requests.DeleteRequest(fmt.Sprintf("%s/all/applications", Config.GetAgogosHostUrl()))
+	return err
 }

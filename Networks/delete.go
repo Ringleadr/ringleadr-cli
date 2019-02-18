@@ -9,6 +9,9 @@ import (
 )
 
 func DeleteNetwork(c *cli.Context) error {
+	if c.Bool("all") {
+		return DeleteAllNetworks(c)
+	}
 	if len(c.Args()) < 1 {
 		cli.ShowSubcommandHelp(c)
 		return errors.New("network name not specified")
@@ -16,8 +19,10 @@ func DeleteNetwork(c *cli.Context) error {
 
 	name := c.Args()[0]
 	_, err := Requests.DeleteRequest(fmt.Sprintf("%s/networks/%s", Config.GetAgogosHostUrl(), name))
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
+}
+
+func DeleteAllNetworks(c *cli.Context) error {
+	_, err := Requests.DeleteRequest(fmt.Sprintf("%s/all/networks", Config.GetAgogosHostUrl()))
+	return err
 }

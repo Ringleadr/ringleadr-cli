@@ -9,10 +9,10 @@ import (
 
 func PrintNodeStats(stats *Datatypes.NodeStatsEntry) error {
 	if len(stats.Stats) == 0 {
-		fmt.Printf("No stats recorded for %s", stats.Name)
+		fmt.Printf("No stats recorded for %s\n", stats.Name)
 		return nil
 	}
-	fmt.Printf("Most recent statistics for %s", stats.Name)
+	fmt.Printf("Most recent statistics for %s\n", stats.Name)
 	mostRecent := stats.Stats[len(stats.Stats)-1]
 	fmt.Printf("Recorded at:\t\t\t%s\n", humanize.Time(time.Unix(mostRecent.Timestamp, 0)))
 	fmt.Printf("Number of CPUs:\t\t\t%d\n", mostRecent.Cpus)

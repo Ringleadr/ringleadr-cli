@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/GodlikePenguin/agogos-cli/Application"
 	"github.com/GodlikePenguin/agogos-cli/Config"
+	"github.com/GodlikePenguin/agogos-cli/General"
 	"github.com/GodlikePenguin/agogos-cli/Host"
 	"github.com/GodlikePenguin/agogos-cli/Init"
 	"github.com/GodlikePenguin/agogos-cli/Networks"
@@ -125,21 +126,39 @@ func main() {
 			Subcommands: []cli.Command{
 				{
 					Name:    "application",
-					Aliases: []string{"app"},
+					Aliases: []string{"app", "applications", "apps"},
 					Usage:   "Delete an application with given name",
-					Action:  Application.DeleteApplication,
+					Flags: []cli.Flag{
+						cli.BoolFlag{
+							Name:  "all",
+							Usage: "Delete all applications",
+						},
+					},
+					Action: Application.DeleteApplication,
 				},
 				{
 					Name:    "storage",
 					Aliases: []string{"s"},
 					Usage:   "Delete the storage volume with the given name",
-					Action:  Storage.DeleteStorage,
+					Flags: []cli.Flag{
+						cli.BoolFlag{
+							Name:  "all",
+							Usage: "Delete all storage",
+						},
+					},
+					Action: Storage.DeleteStorage,
 				},
 				{
 					Name:    "network",
 					Aliases: []string{"n", "networks"},
 					Usage:   "Delete the network with the given name",
-					Action:  Networks.DeleteNetwork,
+					Flags: []cli.Flag{
+						cli.BoolFlag{
+							Name:  "all",
+							Usage: "Delete all networks",
+						},
+					},
+					Action: Networks.DeleteNetwork,
 				},
 				{
 					Name:    "node",
@@ -183,6 +202,11 @@ func main() {
 					Action:    Nodes.StatsForNode,
 				},
 			},
+		},
+		{
+			Name:   "purge",
+			Usage:  "Delete all resources in the system",
+			Action: General.Purge,
 		},
 	}
 
