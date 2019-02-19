@@ -26,3 +26,15 @@ func Purge(c *cli.Context) error {
 	_, err := Requests.DeleteRequest(fmt.Sprintf("%s/everything", Config.GetAgogosHostUrl()))
 	return err
 }
+
+func DeleteStats(c *cli.Context) error {
+	_, err := Requests.DeleteRequest(fmt.Sprintf("%s/all/node/stats", Config.GetAgogosHostUrl()))
+	if err != nil {
+		return errors.New("Error deleting Node stats: " + err.Error())
+	}
+	_, err = Requests.DeleteRequest(fmt.Sprintf("%s/all/comp/stats", Config.GetAgogosHostUrl()))
+	if err != nil {
+		return errors.New("Error deleting Component stats: " + err.Error())
+	}
+	return nil
+}

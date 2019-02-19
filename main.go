@@ -166,6 +166,11 @@ func main() {
 					Usage:   "Delete a node in the cluster (stop scheduling applications on the node)",
 					Action:  Nodes.DeleteNode,
 				},
+				{
+					Name:   "stats",
+					Usage:  "Delete all resource statistics currently stored",
+					Action: General.DeleteStats,
+				},
 			},
 		},
 		{
