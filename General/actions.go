@@ -2,10 +2,10 @@ package General
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"github.com/GodlikePenguin/agogos-cli/Config"
 	"github.com/GodlikePenguin/agogos-cli/Requests"
-	"github.com/pkg/errors"
 	"github.com/urfave/cli"
 	"os"
 	"strings"
