@@ -164,7 +164,13 @@ func main() {
 					Name:    "node",
 					Aliases: []string{"no"},
 					Usage:   "Delete a node in the cluster (stop scheduling applications on the node)",
-					Action:  Nodes.DeleteNode,
+					Flags: []cli.Flag{
+						cli.BoolFlag{
+							Name:  "noreschedule",
+							Usage: "Don't reschedule Applications scheduled on this node",
+						},
+					},
+					Action: Nodes.DeleteNode,
 				},
 				{
 					Name:   "stats",

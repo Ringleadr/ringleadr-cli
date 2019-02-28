@@ -34,7 +34,14 @@ func DeleteNode(c *cli.Context) error {
 	}
 
 	name := c.Args()[0]
-	_, err := Requests.DeleteRequest(fmt.Sprintf("%s/node/%s", Config.GetAgogosHostUrl(), name))
+
+	url := fmt.Sprintf("%s/node/%s", Config.GetAgogosHostUrl(), name)
+
+	r := c.Bool("noreschedule")
+	if r {
+		url += "?noreschedule=true"
+	}
+	_, err := Requests.DeleteRequest(url)
 	if err != nil {
 		return err
 	}
