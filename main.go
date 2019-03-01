@@ -193,6 +193,10 @@ func main() {
 					Name:  "proxy, p",
 					Usage: "Set to start the Agogos Host in proxy mode",
 				},
+				cli.StringFlag{
+					Name:  "addr",
+					Usage: "Advertise address for the host (If not using the default outbound address)",
+				},
 			},
 		},
 		{

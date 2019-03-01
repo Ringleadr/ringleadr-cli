@@ -25,6 +25,11 @@ func Init(ctx *cli.Context) error {
 	if proxy {
 		agogosArgs = append(agogosArgs, "-proxy")
 	}
+
+	addr := ctx.String("addr")
+	if addr != "" {
+		agogosArgs = append(agogosArgs, "-addr", addr)
+	}
 	//Check if there is already an instance running
 	if _, err := Requests.GetRequest("http://localhost:14440/ping"); err == nil {
 		return errors.New("agogos host already running on this machine")
@@ -39,8 +44,9 @@ func Init(ctx *cli.Context) error {
 			return err
 		}
 
-		log.Println("You already have agogos-host installed. In the future you can run it using `agogos-host`. It is now running.")
-		log.Println("It may take a few minutes to start up")
+		log.Println("Using the existing binary. If you need to update the binary use `agogos-cli host update`")
+		log.Println("agogos-host started with args", agogosArgs)
+		log.Println("It may take about a minute to start up")
 		return nil
 	}
 
@@ -51,8 +57,10 @@ func Init(ctx *cli.Context) error {
 		return err
 	}
 
+	log.Println("agogos-host installed to /usr/local/bin/agogos-host")
+
 	//Try to start the binary
-	cmd, err = tryStartCommand("agogos-host ", agogosArgs)
+	cmd, err = tryStartCommand("agogos-host", agogosArgs)
 	if err != nil {
 		return err
 	}
@@ -63,8 +71,9 @@ func Init(ctx *cli.Context) error {
 		return err
 	}
 
-	log.Println("Downloaded latest agogos-release binary. It has been added to your path and is called `agogos-host`.",
-		"The service is now running. This may take a few minutes to start up")
+	log.Println("agogos-host started with args", agogosArgs)
+	log.Println("The service is now running, but may take about a minute to start up")
+	log.Println("Check $HOME/.agogos/host/host.log for logging messages")
 	return nil
 }
 
