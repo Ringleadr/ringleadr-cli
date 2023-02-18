@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/GodlikePenguin/agogos-cli/Application"
-	"github.com/GodlikePenguin/agogos-cli/Config"
-	"github.com/GodlikePenguin/agogos-cli/General"
-	"github.com/GodlikePenguin/agogos-cli/Host"
-	"github.com/GodlikePenguin/agogos-cli/Init"
-	"github.com/GodlikePenguin/agogos-cli/Networks"
-	"github.com/GodlikePenguin/agogos-cli/Nodes"
-	"github.com/GodlikePenguin/agogos-cli/Storage"
+	"github.com/Ringleadr/ringleadr-cli/internal/Application"
+	"github.com/Ringleadr/ringleadr-cli/internal/Config"
+	"github.com/Ringleadr/ringleadr-cli/internal/General"
+	"github.com/Ringleadr/ringleadr-cli/internal/Host"
+	"github.com/Ringleadr/ringleadr-cli/internal/Init"
+	"github.com/Ringleadr/ringleadr-cli/internal/Networks"
+	"github.com/Ringleadr/ringleadr-cli/internal/Nodes"
+	"github.com/Ringleadr/ringleadr-cli/internal/Storage"
 	"github.com/urfave/cli"
 	"log"
 	"os"
@@ -20,7 +20,7 @@ func main() {
 	Config.SetupConfig()
 	app := cli.NewApp()
 
-	app.Name = "agogos-cli"
+	app.Name = "ringleadr-cli"
 	app.Usage = "Command line application to interact with an Agogos host"
 	app.Version = buildTime
 

@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/GodlikePenguin/agogos-cli/Config"
-	"github.com/GodlikePenguin/agogos-cli/Requests"
+	"github.com/Ringleadr/ringleadr-cli/internal/Config"
+	"github.com/Ringleadr/ringleadr-cli/internal/Requests"
 	"github.com/urfave/cli"
 	"io/ioutil"
 )
 
-func UpdateApplication(c *cli.Context) error {
+func CreateApplication(c *cli.Context) error {
 	filePath := c.String("file")
 	if filePath == "" {
 		cli.ShowSubcommandHelp(c)
@@ -26,7 +26,7 @@ func UpdateApplication(c *cli.Context) error {
 		return errors.New("provided file is not valid JSON")
 	}
 
-	_, err = Requests.PutRequest(fmt.Sprintf("%s/applications", Config.GetAgogosHostUrl()),
+	_, err = Requests.PostRequest(fmt.Sprintf("%s/applications", Config.GetAgogosHostUrl()),
 		bytes.NewReader(file))
 	if err != nil {
 		return err

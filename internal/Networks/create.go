@@ -3,8 +3,8 @@ package Networks
 import (
 	"errors"
 	"fmt"
-	"github.com/GodlikePenguin/agogos-cli/Config"
-	"github.com/GodlikePenguin/agogos-cli/Requests"
+	"github.com/Ringleadr/ringleadr-cli/internal/Config"
+	"github.com/Ringleadr/ringleadr-cli/internal/Requests"
 	"github.com/urfave/cli"
 )
 

@@ -2,7 +2,7 @@ package Host
 
 import (
 	"errors"
-	"github.com/GodlikePenguin/agogos-cli/Init"
+	"github.com/Ringleadr/ringleadr-cli/internal/Init"
 	"github.com/urfave/cli"
 	"log"
 	"os"

@@ -1,8 +1,8 @@
 package Format
 
 import (
-	"github.com/GodlikePenguin/agogos-cli/Errors"
-	"github.com/GodlikePenguin/agogos-datatypes"
+	"github.com/Ringleadr/ringleadr-cli/internal/Errors"
+	Datatypes "github.com/Ringleadr/ringleadr-datatypes"
 	"html/template"
 	"os"
 	"strings"

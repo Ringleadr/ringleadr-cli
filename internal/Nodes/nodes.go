@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/GodlikePenguin/agogos-cli/Config"
-	"github.com/GodlikePenguin/agogos-cli/Errors"
-	"github.com/GodlikePenguin/agogos-cli/Format"
-	"github.com/GodlikePenguin/agogos-cli/Requests"
-	"github.com/GodlikePenguin/agogos-datatypes"
+	"github.com/Ringleadr/ringleadr-cli/internal/Config"
+	"github.com/Ringleadr/ringleadr-cli/internal/Errors"
+	"github.com/Ringleadr/ringleadr-cli/internal/Format"
+	"github.com/Ringleadr/ringleadr-cli/internal/Requests"
+	Datatypes "github.com/Ringleadr/ringleadr-datatypes"
 	"github.com/urfave/cli"
 )
 

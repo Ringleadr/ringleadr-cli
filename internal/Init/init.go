@@ -2,7 +2,7 @@ package Init
 
 import (
 	"errors"
-	"github.com/GodlikePenguin/agogos-cli/Requests"
+	"github.com/Ringleadr/ringleadr-cli/internal/Requests"
 	"github.com/buger/jsonparser"
 	"github.com/urfave/cli"
 	"log"

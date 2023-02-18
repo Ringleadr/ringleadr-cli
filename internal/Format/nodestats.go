@@ -2,7 +2,7 @@ package Format
 
 import (
 	"fmt"
-	"github.com/GodlikePenguin/agogos-datatypes"
+	Datatypes "github.com/Ringleadr/ringleadr-datatypes"
 	"github.com/dustin/go-humanize"
 	"time"
 )
